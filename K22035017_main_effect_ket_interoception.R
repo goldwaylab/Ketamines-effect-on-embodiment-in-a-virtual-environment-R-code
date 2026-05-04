@@ -106,6 +106,13 @@ ggplot(df_long, aes(x = session, y = BPQ_score)) +
   labs(x = 'Session',y = 'BPQ-vsf score')+
   theme_classic()
 
+#Median and IQR
+df_long %>%
+  group_by(session) %>%
+  summarise(median = median(BPQ_score),
+    q1 = quantile(BPQ_score,0.25),
+    q3 = quantile(BPQ_score, 0.75))
+
 #References
 #Bobbitt, Z. (2022, March 12). A Complete Guide to the Default Colors in ggplot2. Statology. https://www.statology.org/ggplot-default-colors/
 #Chang, C., Leeper, T. J., Becker, J., & Schoch, D. (2024). A Swiss-Army Knife for Data I/O [R package rio version 1.2.3]. R-Project.org. https://cran.r-project.org/package=rio
